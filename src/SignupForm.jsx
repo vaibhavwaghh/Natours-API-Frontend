@@ -1,12 +1,28 @@
+import { useState } from "react";
 import Header from "./Header";
+import { signup } from "./api/authentication/signup";
 
 const SignupForm = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("THIS IS MY EMAIL PASS", email, password);
+    signup(name, email, password, passwordConfirm);
+    setName("");
+    setEmail("");
+    setPassword("");
+    setPasswordConfirm("");
+  }
   return (
     <>
       <Header />
       <main className="main">
         <div className="signup-form">
-          <form className="form form--signup">
+          <form className="form form--signup" onSubmit={handleSubmit}>
             <div className="form__group">
               <label className="form__label" htmlFor="name">
                 Name
@@ -16,6 +32,8 @@ const SignupForm = () => {
                 className="form__input"
                 type="text"
                 placeholder="your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 required
               />
             </div>
@@ -28,6 +46,8 @@ const SignupForm = () => {
                 className="form__input"
                 type="email"
                 placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 minLength="8"
               />
@@ -39,6 +59,8 @@ const SignupForm = () => {
               <input
                 id="password"
                 className="form__input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="••••••••"
                 required
@@ -52,6 +74,8 @@ const SignupForm = () => {
                 id="passwordconfirm"
                 className="form__input"
                 type="password"
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
                 placeholder="••••••••"
                 required
                 minLength="8"

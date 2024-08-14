@@ -7,7 +7,7 @@ export function useGetAllTours() {
   useEffect(function () {
     async function getAllTours() {
       const res = await axios.get(`${APIURL}/api/v1/tours`);
-      console.log("RESPONSE", res);
+      console.log("RESPONSE FROM AUTH COCNTROLLER", res);
 
       const allTourArray = res?.data?.data?.doc;
       setAllTours(allTourArray);

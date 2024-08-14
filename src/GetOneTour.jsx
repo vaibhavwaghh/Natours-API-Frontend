@@ -1,11 +1,12 @@
-import { useContext, useEffect } from "react";
-import { useGetOneTour } from "./api/useGetOneTour";
+import { useContext } from "react";
+
 import TourOverview from "./TourOverview";
 import Spinner from "./Spinner";
-import MyContext from "./context/MyContext";
-import Overview from "./Overview";
 
-function GetOneTour({ children }) {
+import { useGetOneTour } from "./api/customhooks/useGetOneTour";
+import { MyContext } from "./context/MyContext";
+
+function GetOneTour() {
   const { tourId } = useContext(MyContext);
   console.log("HA MAJHA TOUR ID", tourId);
   let user = {};

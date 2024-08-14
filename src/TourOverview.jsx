@@ -1,9 +1,6 @@
-import { useContext } from "react";
 import ReviewCard from "./ReviewCard"; // Assuming you have a ReviewCard component
 import OverviewBox from "./OverviewBox";
-import MyContext from "./context/MyContext";
-import { useGetOneTour } from "./api/useGetOneTour";
-import Spinner from "./Spinner";
+
 import Header from "./Header";
 
 const TourOverview = ({ tour, user }) => {

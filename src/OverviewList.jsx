@@ -1,4 +1,4 @@
-import { useGetAllTours } from "./api/useGetAllTours";
+import { useGetAllTours } from "./api/customhooks/useGetAllTours";
 import Overview from "./Overview";
 import Spinner from "./Spinner";
 

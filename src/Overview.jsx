@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import { useContext } from "react";
-import MyContext from "./context/MyContext";
+import { MyContext } from "./context/MyContext";
 
 const Overview = ({ tour }) => {
   const navigate = useNavigate();

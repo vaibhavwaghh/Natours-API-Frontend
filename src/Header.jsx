@@ -1,9 +1,14 @@
-import { useLogout } from "./api/useLogout";
+import { useContext } from "react";
+import { logout } from "./api/authentication/logout";
 import "./App.css";
 import { useNavigate } from "react-router-dom";
-function Header({ user }) {
+import { MyContext } from "./context/MyContext";
+
+function Header() {
   const navigate = useNavigate();
-  const logout = useLogout();
+  const { user } = useContext(MyContext);
+  console.log("ha ahe current user", user);
+
   function handleClick() {
     logout();
   }

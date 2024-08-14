@@ -4,6 +4,16 @@ import React, { useState } from "react";
 
 const MyContext = createContext(null);
 
-// MyProvider.js
+function MyProvider({ children }) {
+  const [tourId, setTourId] = useState("");
+  const [user, setUser] = useState(null);
+  return (
+    <MyContext.Provider value={{ tourId, setTourId, user, setUser }}>
+      {children}
+    </MyContext.Provider>
+  );
+}
 
-export default MyContext;
+export { MyContext, MyProvider };
+
+// MyProvider.js
