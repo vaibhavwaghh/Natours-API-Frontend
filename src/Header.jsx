@@ -6,6 +6,7 @@ import { MyContext } from "./context/MyContext";
 
 function Header() {
   const navigate = useNavigate();
+
   const { user } = useContext(MyContext);
   console.log("ha ahe current user", user);
 

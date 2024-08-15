@@ -2,23 +2,32 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import toast from "react-hot-toast";
 import { MyContext } from "../../context/MyContext";
+import { useNavigate } from "react-router-dom";
 
 let APIURL = import.meta.env.VITE_API_URL;
 
 export function useLogIn() {
-  const setUser = useContext(MyContext);
+  const { setUser } = useContext(MyContext);
+  const navigate = useNavigate();
   async function login(email, password) {
     try {
-      const res = await axios.post(`${APIURL}/api/v1/users/login`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${APIURL}/api/v1/users/login`,
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
 
       console.log("HA AHE LOGIN CHA RES ", res);
 
       if (res?.data?.status === "success") {
         toast.success("Logged In Successfully");
         setUser(res?.data?.data?.user);
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
       } else if (res?.data?.status === "failed") {
         console.log("HA ERROR AHE");
         toast.error("Incorrect username or password");

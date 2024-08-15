@@ -1,6 +1,10 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import OverviewList from "./OverviewList";
+import { useContext, useEffect } from "react";
+import { MyContext } from "./context/MyContext";
+import { useLoggedIn } from "./api/authentication/isLoggedIn";
+import Spinner from "./Spinner";
 
 function BaseTemplate({ title, children }) {
   // let user = {
@@ -11,20 +15,33 @@ function BaseTemplate({ title, children }) {
   //   role: "admin",
   //   __v: 0,
   // };
-  let user = {};
+  const { setUser } = useContext(MyContext);
+  const { isLoading, user } = useLoggedIn();
+
+  // Set the user context when user data is loaded
+  useEffect(() => {
+    if (!isLoading && user) {
+      setUser(user);
+    }
+  }, [isLoading, user, setUser]);
   return (
     <>
-      {/* HEADER */}
-      <Header />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          {/* HEADER */}
+          <Header />
 
-      {/* MAIN */}
-      <main>
-        {" "}
-        <OverviewList />
-      </main>
+          {/* MAIN */}
+          <main>
+            <OverviewList />
+          </main>
 
-      {/* FOOTER */}
-      <Footer />
+          {/* FOOTER */}
+          <Footer />
+        </>
+      )}
     </>
   );
 }
