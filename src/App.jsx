@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 // import { useLoggedIn } from "./api/customhooks/useLoggedIn";
 import Spinner from "./Spinner"; // Assuming you have a Spinner component
 import { MyProvider } from "./context/MyContext";
+import Account from "./Account";
 
 function App() {
   // const { isLoading, user } = useLoggedIn();
@@ -22,6 +23,7 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />
             <Route path="/tour/:tourName" element={<GetOneTour />} />
+            <Route path="/account" element={<Account />} />
           </Routes>
         </Router>
         <Toaster

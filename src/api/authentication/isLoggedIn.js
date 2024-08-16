@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { MyContext } from "../../context/MyContext";
+
 import { toast } from "react-hot-toast"; // Ensure you have react-toastify installed and set up
 
 const APIURL = import.meta.env.VITE_API_URL;

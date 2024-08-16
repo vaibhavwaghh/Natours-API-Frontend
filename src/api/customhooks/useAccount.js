@@ -6,31 +6,31 @@ import { useNavigate } from "react-router-dom";
 
 let APIURL = import.meta.env.VITE_API_URL;
 
-export function useLogIn() {
+export function useAccount() {
   const { setUser } = useContext(MyContext);
-  const navigate = useNavigate();
-  async function login(email, password) {
+  // const navigate = useNavigate();
+  async function account(formData) {
+    console.log("ANDAR VALA CHANGES", formData);
+
     try {
-      const res = await axios.post(
-        `${APIURL}/api/v1/users/login`,
+      const res = await axios.patch(
+        `${APIURL}/api/v1/users/updateMe`,
+        formData,
         {
-          email,
-          password,
-        },
-        { withCredentials: true }
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
-      console.log("HA AHE LOGIN CHA RES ", res);
-
       if (res?.data?.status === "success") {
-        toast.success("Logged In Successfully");
-        setTimeout(() => {
-          navigate("/");
-          setUser(res?.data?.data?.user);
-        }, 3000);
+        toast.success("Updated User Successfully");
+
+        setUser(res?.data?.data?.user);
       } else if (res?.data?.status === "failed") {
         console.log("HA ERROR AHE");
-        toast.error("Incorrect username or password");
+        toast.error("Update User failed");
       }
     } catch (err) {
       console.log("HA ERR OBJ", err);
@@ -38,5 +38,7 @@ export function useLogIn() {
       toast.error(err?.response?.data?.message);
     }
   }
-  return login;
+  return account;
 }
+
+// `${APIURL}/api/v1/users/updateMe`,

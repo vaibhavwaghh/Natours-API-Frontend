@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Header from "./Header";
-import { signup } from "./api/authentication/signup";
+import { useSignUp } from "./api/authentication/useSignup";
 
 const SignupForm = () => {
   const [name, setName] = useState("");
@@ -8,6 +8,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
+  const signup = useSignUp();
   function handleSubmit(e) {
     e.preventDefault();
     console.log("THIS IS MY EMAIL PASS", email, password);

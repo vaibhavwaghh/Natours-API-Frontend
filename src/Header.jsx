@@ -1,19 +1,23 @@
 import { useContext } from "react";
-import { logout } from "./api/authentication/logout";
+import { useLoggedOut } from "./api/authentication/logout";
 import "./App.css";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "./context/MyContext";
 
 function Header() {
   const navigate = useNavigate();
+  const logout = useLoggedOut();
 
   const { user } = useContext(MyContext);
-  console.log("ha ahe current user", user);
-
   function handleClick() {
     logout();
   }
+
   return (
+    // <>
+    //   {isLoading ? (
+    //     <Spinner />
+    //   ) : (
     <>
       <header className="header">
         <nav className="nav nav--tours">
@@ -30,14 +34,14 @@ function Header() {
               <button className="nav__el nav__el--logout" onClick={handleClick}>
                 Log out
               </button>
-              <a className="nav__el" href="/me">
+              <button className="nav__el" onClick={() => navigate("/account")}>
                 <img
                   className="nav__user-img"
                   src={`/img/users/${user?.photo}`}
                   alt={`PHOTO OF ${user.name}`}
                 />
                 <span>{user?.name?.split(" ")[0]}</span>
-              </a>
+              </button>
             </>
           ) : (
             <>
@@ -55,6 +59,8 @@ function Header() {
         </nav>
       </header>
     </>
+    //   )}
+    // </>
   );
 }
 
