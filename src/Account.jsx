@@ -4,6 +4,7 @@ import { MyContext } from "./context/MyContext";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "./api/customhooks/useAccount";
+import { useUpdatePassword } from "./api/customhooks/useUpdatePassword";
 
 const Account = () => {
   const { user } = useContext(MyContext);
@@ -14,7 +15,13 @@ const Account = () => {
   const [name, setName] = useState(user?.name);
   const [email, setEmail] = useState(user?.email);
   const [photo, setPhoto] = useState(user?.photo);
+
+  const [passwordCurrent, setPasswordCurr] = useState("");
+  const [password, setPasswordNew] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const account = useAccount();
+  const updatePassword = useUpdatePassword();
+  const formData = new FormData();
 
   function handleFileChange(event) {
     const file = event.target.files[0]; // Get the first file selected
@@ -22,17 +29,25 @@ const Account = () => {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    console.log("NAME , EMAIL, PHOTO", name, email, photo);
 
-    const formData = new FormData();
     formData.append("name", name);
     formData.append("email", email);
-    if (photo) {
-      formData.append("photo", photo);
+    formData.append("photo", photo);
+
+    // To view the form data entries
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
     }
 
-    console.log("THIS IS FORM DATA ", formData);
-
+    // Call your account function with the form data
     account(formData);
+  }
+
+  function handleSubmit2(e) {
+    const allData = { passwordCurrent, password, passwordConfirm };
+    // Call your account function with the form data
+    updatePassword(allData);
   }
   return (
     <>
@@ -96,7 +111,7 @@ const Account = () => {
                 <div className="form__group form__photo-upload">
                   <img
                     className="form__user-photo"
-                    src={`img/users/${photo}`}
+                    src={`http://127.0.0.1:4000/img/users/${photo}`}
                     alt="User photo"
                   />
                   <input
@@ -121,7 +136,10 @@ const Account = () => {
             <hr className="line" />
             <div className="user-view__form-container">
               <h2 className="heading-secondary ma-bt-md">Password change</h2>
-              <form className="form form-user-password">
+              <form
+                className="form form-user-password"
+                onSubmit={handleSubmit2}
+              >
                 <div className="form__group">
                   <label className="form__label" htmlFor="password-current">
                     Current password
@@ -133,6 +151,7 @@ const Account = () => {
                     placeholder="••••••••"
                     required
                     minLength="8"
+                    onChange={(e) => setPasswordCurr(e.target.value)}
                   />
                 </div>
                 <div className="form__group">
@@ -146,6 +165,7 @@ const Account = () => {
                     placeholder="••••••••"
                     required
                     minLength="8"
+                    onChange={(e) => setPasswordNew(e.target.value)}
                   />
                 </div>
                 <div className="form__group ma-bt-lg">
@@ -159,6 +179,7 @@ const Account = () => {
                     placeholder="••••••••"
                     required
                     minLength="8"
+                    onChange={(e) => setPasswordConfirm(e.target.value)}
                   />
                 </div>
                 <div className="form__group right">

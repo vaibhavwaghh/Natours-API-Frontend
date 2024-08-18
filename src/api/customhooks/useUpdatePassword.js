@@ -6,19 +6,16 @@ import { useNavigate } from "react-router-dom";
 
 let APIURL = import.meta.env.VITE_API_URL;
 
-export function useAccount() {
-  const { setUser } = useContext(MyContext);
+export function useUpdatePassword() {
+  // const { setUser } = useContext(MyContext);
   const navigate = useNavigate();
-  const updatePhotoName = async (formData) => {
+  const updatePassword = async (formData) => {
     try {
       const res = await axios.patch(
-        `${APIURL}/api/v1/users/updateMe`,
+        `${APIURL}/api/v1/users/updateMyPassword`,
         formData,
         {
           withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
         }
       );
 
@@ -26,7 +23,7 @@ export function useAccount() {
         console.log("RES OBJ", res.data);
 
         toast.success("Updated User Successfully");
-        setUser(res?.data?.data?.user);
+        // setUser(res?.data?.data?.user);
         navigate("/"); // Reload the page after successful update
       } else {
         toast.error("Update User failed");
@@ -37,5 +34,5 @@ export function useAccount() {
     }
   };
 
-  return updatePhotoName;
+  return updatePassword;
 }

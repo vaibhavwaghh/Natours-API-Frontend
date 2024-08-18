@@ -37,7 +37,7 @@ function Header() {
               <button className="nav__el" onClick={() => navigate("/account")}>
                 <img
                   className="nav__user-img"
-                  src={`/img/users/${user?.photo}`}
+                  src={`http://127.0.0.1:4000/img/users/${user.photo}`}
                   alt={`PHOTO OF ${user.name}`}
                 />
                 <span>{user?.name?.split(" ")[0]}</span>
