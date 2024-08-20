@@ -3,8 +3,8 @@ import { useContext } from "react";
 import TourOverview from "./TourOverview";
 import Spinner from "./Spinner";
 
-import { useGetOneTour } from "./api/customhooks/useGetOneTour";
 import { MyContext } from "./context/MyContext";
+import { useGetOneTour } from "./api/customhooks/getTours/useGetOneTour";
 
 function GetOneTour() {
   const { tourId } = useContext(MyContext);

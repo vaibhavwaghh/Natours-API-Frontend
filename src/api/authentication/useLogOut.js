@@ -7,7 +7,7 @@ import { MyContext } from "../../context/MyContext";
 
 const APIURL = import.meta.env.VITE_API_URL;
 
-export function useLoggedOut() {
+export function useLogOut() {
   const { setUser } = useContext(MyContext);
   const navigate = useNavigate();
   async function logout() {

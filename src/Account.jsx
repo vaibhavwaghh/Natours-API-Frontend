@@ -1,16 +1,13 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import NavItem from "./NavItem";
 import { MyContext } from "./context/MyContext";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
-import { useAccount } from "./api/customhooks/useAccount";
-import { useUpdatePassword } from "./api/customhooks/useUpdatePassword";
-
+import { useUpdatePhotoName } from "./api/customhooks/updateSetting/useUpdatePhotoName";
+import { useUpdatePassword } from "./api/customhooks/updateSetting/useUpdatePassword";
+let APIURL = import.meta.env.VITE_API_URL;
 const Account = () => {
   const { user } = useContext(MyContext);
-  const navigate = useNavigate();
-  if (!user) navigate("/");
-  console.log("THIS IS USER PHOTO", user?.photo);
 
   const [name, setName] = useState(user?.name);
   const [email, setEmail] = useState(user?.email);
@@ -19,7 +16,7 @@ const Account = () => {
   const [passwordCurrent, setPasswordCurr] = useState("");
   const [password, setPasswordNew] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const account = useAccount();
+  const account = useUpdatePhotoName();
   const updatePassword = useUpdatePassword();
   const formData = new FormData();
 
@@ -111,7 +108,7 @@ const Account = () => {
                 <div className="form__group form__photo-upload">
                   <img
                     className="form__user-photo"
-                    src={`http://127.0.0.1:4000/img/users/${photo}`}
+                    // src={`${APIURL}/img/users/${photo}`}
                     alt="User photo"
                   />
                   <input

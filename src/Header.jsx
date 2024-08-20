@@ -1,12 +1,13 @@
 import { useContext } from "react";
-import { useLoggedOut } from "./api/authentication/logout";
+
 import "./App.css";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "./context/MyContext";
-
+import { useLogOut } from "./api/authentication/useLogOut";
+let APIURL = import.meta.env.VITE_API_URL;
 function Header() {
   const navigate = useNavigate();
-  const logout = useLoggedOut();
+  const logout = useLogOut();
 
   const { user } = useContext(MyContext);
   function handleClick() {
@@ -37,7 +38,7 @@ function Header() {
               <button className="nav__el" onClick={() => navigate("/account")}>
                 <img
                   className="nav__user-img"
-                  src={`http://127.0.0.1:4000/img/users/${user.photo}`}
+                  // src={`${APIURL}/img/users/${user?.photo}`}
                   alt={`PHOTO OF ${user.name}`}
                 />
                 <span>{user?.name?.split(" ")[0]}</span>

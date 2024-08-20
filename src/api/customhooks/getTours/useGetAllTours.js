@@ -1,16 +1,19 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { MyContext } from "../../../context/MyContext";
 let APIURL = import.meta.env.VITE_API_URL;
 export function useGetAllTours() {
   const [allTours, setAllTours] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { setUser } = useContext(MyContext);
   useEffect(function () {
     async function getAllTours() {
-      const res = await axios.get(`${APIURL}/api/v1/tours`);
-      console.log("RESPONSE FROM AUTH COCNTROLLER", res);
+      const res = await axios.get(`${APIURL}`, { withCredentials: true });
+      console.log("HA AHE RES", res);
 
-      const allTourArray = res?.data?.data?.doc;
+      const allTourArray = res?.data?.tours;
       setAllTours(allTourArray);
+      if (res?.data?.users) setUser(res?.data?.users);
       setIsLoading(false);
     }
 

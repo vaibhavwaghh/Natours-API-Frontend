@@ -5,8 +5,6 @@ import SignupForm from "./SignupForm";
 
 import GetOneTour from "./GetOneTour";
 import { Toaster } from "react-hot-toast";
-// import { useLoggedIn } from "./api/customhooks/useLoggedIn";
-import Spinner from "./Spinner"; // Assuming you have a Spinner component
 import { MyProvider } from "./context/MyContext";
 import Account from "./Account";
 
