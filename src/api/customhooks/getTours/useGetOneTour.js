@@ -7,7 +7,9 @@ export function useGetOneTour(id) {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     async function getOneTour() {
-      const res = await axios.get(`${APIURL}/api/v1/tours/${id}`);
+      const res = await axios.get(`${APIURL}/api/v1/tours/${id}`, {
+        withCredentials: true,
+      });
       console.log("DATA FROM 1 TOUR", res);
       const oneTourArray = res?.data?.tour;
       setOneTour(oneTourArray);

@@ -7,6 +7,7 @@ import GetOneTour from "./GetOneTour";
 import { Toaster } from "react-hot-toast";
 import { MyProvider } from "./context/MyContext";
 import Account from "./Account";
+import GetBooking from "./GetBooking";
 
 function App() {
   // const { isLoading, user } = useLoggedIn();
@@ -21,7 +22,8 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />
             <Route path="/tour/:tourName" element={<GetOneTour />} />
-            <Route path="/account" element={<Account />} />
+            <Route path="/account-settings" element={<Account />} />
+            <Route path="/my-bookings" element={<GetBooking />} />
           </Routes>
         </Router>
         <Toaster

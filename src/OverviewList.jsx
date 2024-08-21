@@ -3,6 +3,8 @@ import Overview from "./Overview";
 import Spinner from "./Spinner";
 
 const OverviewList = ({ allTours }) => {
+  console.log("OVERVIEW LIST", allTours);
+
   return (
     <>
       <main className="main">

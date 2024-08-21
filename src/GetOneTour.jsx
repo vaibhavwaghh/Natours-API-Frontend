@@ -8,9 +8,10 @@ import { useGetOneTour } from "./api/customhooks/getTours/useGetOneTour";
 
 function GetOneTour() {
   const { tourId } = useContext(MyContext);
-  console.log("HA MAJHA TOUR ID", tourId);
-  let user = {};
+  const { user } = useContext(MyContext);
+
   const { isLoading, oneTour: tour } = useGetOneTour(tourId);
+  console.log("HA MAJHA GET ONE TOUR CHA TOUR ANI USER", tour, user);
   console.log("THIS IS 1 TOUR", tourId, tour, isLoading);
   return (
     <>

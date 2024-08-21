@@ -1,9 +1,11 @@
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 let APIURL = import.meta.env.VITE_API_URL;
 
 export function useUpdatePassword() {
+  const navigate = useNavigate();
   const updatePassword = async (formData) => {
     try {
       const res = await axios.patch(
@@ -17,6 +19,7 @@ export function useUpdatePassword() {
       if (res.data.status === "success") {
         console.log("RES OBJ", res.data);
         toast.success("Updated User Successfully");
+        navigate("/");
       } else {
         toast.error("Update User failed");
       }

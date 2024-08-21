@@ -2,6 +2,9 @@ import ReviewCard from "./ReviewCard"; // Assuming you have a ReviewCard compone
 import OverviewBox from "./OverviewBox";
 
 import Header from "./Header";
+import { bookTour } from "./api/customhooks/bookTour/bookTour";
+import { useContext } from "react";
+import { MyContext } from "./context/MyContext";
 
 const TourOverview = ({ tour, user }) => {
   console.log("HA MAJHA TOUR ANI USER", tour, user);
@@ -11,6 +14,9 @@ const TourOverview = ({ tour, user }) => {
     year: "numeric",
   });
 
+  function handleClick() {
+    bookTour(tour?.id, user?._id);
+  }
   return (
     <>
       <Header />
@@ -152,6 +158,7 @@ const TourOverview = ({ tour, user }) => {
                   className="btn btn--green"
                   id="book-tour"
                   data-tour-id={tour?.id}
+                  onClick={handleClick}
                 >
                   Book tour now!
                 </button>
