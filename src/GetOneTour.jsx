@@ -8,10 +8,10 @@ import { useGetOneTour } from "./api/customhooks/getTours/useGetOneTour";
 
 function GetOneTour() {
   const { tourId } = useContext(MyContext);
-  const { user } = useContext(MyContext);
+  const { currUser } = useContext(MyContext);
 
   const { isLoading, oneTour: tour } = useGetOneTour(tourId);
-  console.log("HA MAJHA GET ONE TOUR CHA TOUR ANI USER", tour, user);
+  console.log("HA MAJHA GET ONE TOUR CHA TOUR ANI USER", tour, currUser);
   console.log("THIS IS 1 TOUR", tourId, tour, isLoading);
   return (
     <>
@@ -19,7 +19,7 @@ function GetOneTour() {
         <Spinner />
       ) : (
         <>
-          <TourOverview tour={tour} user={user} />
+          <TourOverview tour={tour} user={currUser} />
         </>
       )}
     </>

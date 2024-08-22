@@ -19,7 +19,8 @@ export function useUpdatePassword() {
       if (res.data.status === "success") {
         console.log("RES OBJ", res.data);
         toast.success("Updated User Successfully");
-        navigate("/");
+        window.location.reload();
+        // navigate("/");
       } else {
         toast.error("Update User failed");
       }

@@ -11,6 +11,7 @@ let APIURL = import.meta.env.VITE_API_URL;
 export function useGetBookings() {
   const [tours, setTours] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState("");
   useEffect(function () {
     async function getBookings() {
       try {
@@ -22,8 +23,11 @@ export function useGetBookings() {
 
         if (res?.data?.status == "success") {
           console.log(res.data.tours);
-
-          setTours(res?.data?.tours);
+          if (res?.data?.message) {
+            setMessage(res?.data?.message);
+          } else {
+            setTours(res?.data?.tours);
+          }
         } else {
           toast.error("Something went wrong!!");
         }
@@ -36,5 +40,5 @@ export function useGetBookings() {
     }
     getBookings();
   }, []);
-  return { tours, isLoading };
+  return { tours, isLoading, message };
 }

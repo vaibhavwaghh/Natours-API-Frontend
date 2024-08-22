@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 let APIURL = import.meta.env.VITE_API_URL;
 
 export function useLogIn() {
-  const { setUser } = useContext(MyContext);
+  const { setCurrUser } = useContext(MyContext);
   const navigate = useNavigate();
   async function login(email, password) {
     try {
@@ -26,7 +26,7 @@ export function useLogIn() {
         toast.success("Logged In Successfully");
         setTimeout(() => {
           navigate("/");
-          setUser(res?.data?.data?.user);
+          setCurrUser(res?.data?.data?.user);
         }, 3000);
       } else if (res?.data?.status === "failed") {
         console.log("HA ERROR AHE");

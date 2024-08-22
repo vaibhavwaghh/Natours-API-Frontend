@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 let APIURL = import.meta.env.VITE_API_URL;
 
 export function useUpdatePhotoName() {
-  const { setUser } = useContext(MyContext);
+  const { setCurrUser } = useContext(MyContext);
   const navigate = useNavigate();
   const updatePhotoName = async (formData) => {
     try {
@@ -26,9 +26,9 @@ export function useUpdatePhotoName() {
         console.log("RES OBJ", res.data);
 
         toast.success("Updated User Successfully");
-        setUser(res?.data?.data?.user);
-        // window.location.reload();
-        navigate("/"); // Reload the page after successful update
+        setCurrUser(res?.data?.data?.user);
+        window.location.reload();
+        // navigate("/"); // Reload the page after successful update
       } else {
         toast.error("Update User failed");
       }

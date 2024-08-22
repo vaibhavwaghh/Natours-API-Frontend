@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import LoginForm from "./LoginForm";
 import BaseTemplate from "./BaseTemplate";
 import SignupForm from "./SignupForm";
@@ -8,11 +13,10 @@ import { Toaster } from "react-hot-toast";
 import { MyProvider } from "./context/MyContext";
 import Account from "./Account";
 import GetBooking from "./GetBooking";
+import axios from "axios";
+import { useEffect } from "react";
 
 function App() {
-  // const { isLoading, user } = useLoggedIn();
-  // console.log("HA MAJHA USER", user);
-
   return (
     <>
       <MyProvider>

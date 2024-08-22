@@ -6,7 +6,7 @@ import { MyContext } from "../../context/MyContext";
 let APIURL = import.meta.env.VITE_API_URL;
 
 export function useSignUp() {
-  const { setUser } = useContext(MyContext);
+  const { setCurrUser } = useContext(MyContext);
 
   async function signup(name, email, password, passwordConfirm) {
     const signupCredentials = { name, email, password, passwordConfirm };
@@ -21,7 +21,7 @@ export function useSignUp() {
       console.log("THIS IS RES", res);
       if (res?.data?.status === "success") {
         toast.success("Signed up Successful!");
-        setUser(res?.data?.data?.user);
+        setCurrUser(res?.data?.data?.user);
         setTimeout(() => {
           location.assign("/");
         }, 500);

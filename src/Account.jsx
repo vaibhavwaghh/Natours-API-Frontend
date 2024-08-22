@@ -8,14 +8,24 @@ import { useUpdatePassword } from "./api/customhooks/updateSetting/useUpdatePass
 import SettingNavBar from "./SettingNavBar";
 import { useGetMe } from "./api/customhooks/getMe/useGetMe";
 import Spinner from "./Spinner";
+import { useEffect } from "react";
 let APIURL = import.meta.env.VITE_API_URL;
 const Account = () => {
   const { isLoading, user } = useGetMe();
   console.log("ala re ala user ala", user);
 
-  const [name, setName] = useState(user?.name);
-  const [email, setEmail] = useState(user?.email);
-  const [photo, setPhoto] = useState(user?.photo);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [photo, setPhoto] = useState(null);
+
+  // Effect to update the state variables when `user` data becomes available
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+      setPhoto(user.photo);
+    }
+  }, [user]);
 
   const [passwordCurrent, setPasswordCurr] = useState("");
   const [password, setPasswordNew] = useState("");
@@ -32,10 +42,15 @@ const Account = () => {
     e.preventDefault();
     console.log("NAME , EMAIL, PHOTO", name, email, photo);
 
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("photo", photo);
-
+    if (name !== user.name) {
+      formData.append("name", name);
+    }
+    if (email !== user.email) {
+      formData.append("email", email);
+    }
+    if (photo !== user.photo) {
+      formData.append("photo", photo);
+    }
     // To view the form data entries
     for (let [key, value] of formData.entries()) {
       console.log(`${key}:`, value);
@@ -77,7 +92,7 @@ const Account = () => {
                         id="name"
                         className="form__input"
                         type="text"
-                        value={user?.name}
+                        value={name}
                         required
                         onChange={(e) => setName(e.target.value)}
                       />
@@ -90,7 +105,7 @@ const Account = () => {
                         id="email"
                         className="form__input"
                         type="email"
-                        value={user?.email}
+                        value={email}
                         required
                         name="email"
                         onChange={(e) => setEmail(e.target.value)}
