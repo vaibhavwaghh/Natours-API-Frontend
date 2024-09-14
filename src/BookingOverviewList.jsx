@@ -1,12 +1,10 @@
 import Overview from "./Overview";
 
-const OverviewList = ({ allTours }) => {
-  console.log("OVERVIEW LIST", allTours);
-
+function BookingOverviewList({ allTours }) {
   return (
     <>
       <main className="main">
-        <div className="card-container">
+        <div className="card-container-2">
           {allTours?.map((tour) => (
             <Overview key={tour._id} tour={tour} />
           ))}
@@ -14,6 +12,6 @@ const OverviewList = ({ allTours }) => {
       </main>
     </>
   );
-};
+}
 
-export default OverviewList;
+export default BookingOverviewList;

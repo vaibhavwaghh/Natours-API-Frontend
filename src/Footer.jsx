@@ -2,7 +2,11 @@ import "./App.css";
 const Footer = () => (
   <footer className="footer">
     <div className="footer__logo">
-      <img src="/img/logo-green.png" alt="Natours logo" />
+      <img
+        style={{ width: "100px", height: "auto" }}
+        src="/img/Tours-web-hub.jpg"
+        alt="Natours logo"
+      />
     </div>
     <ul className="footer__nav">
       <li>

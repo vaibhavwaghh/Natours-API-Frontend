@@ -15,12 +15,14 @@ import Account from "./Account";
 import GetBooking from "./GetBooking";
 import axios from "axios";
 import { useEffect } from "react";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
   return (
     <>
       <MyProvider>
         <Router>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<BaseTemplate />} />
             <Route path="/login" element={<LoginForm />} />

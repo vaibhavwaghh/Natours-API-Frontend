@@ -27,7 +27,11 @@ function Header() {
               </a>
             </nav>
             <div className="header__logo">
-              <img src="/img/logo-white.png" alt="Natours logo" />
+              <img
+                src="/img/travel-icon.png"
+                style={{ width: "70px", height: "auto" }}
+                alt="Natours logo"
+              />
             </div>
             <nav className="nav nav--user">
               {user ? (

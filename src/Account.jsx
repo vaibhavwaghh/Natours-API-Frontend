@@ -12,7 +12,6 @@ import { useEffect } from "react";
 let APIURL = import.meta.env.VITE_API_URL;
 const Account = () => {
   const { isLoading, user } = useGetMe();
-  console.log("ala re ala user ala", user);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

@@ -4,6 +4,8 @@ import OverviewList from "./OverviewList";
 import Spinner from "./Spinner";
 import SettingNavBar from "./SettingNavBar";
 import { useGetMe } from "./api/customhooks/getMe/useGetMe";
+import BookingOverviewList from "./BookingOverviewList";
+import NoBooking from "./NoBooking";
 
 function GetBooking() {
   const { tours, isLoading, message } = useGetBookings();
@@ -20,7 +22,7 @@ function GetBooking() {
       <main className="main">
         <div className="user-view">
           <SettingNavBar user={user} />
-          {message ? <p>{message}</p> : <OverviewList allTours={tours} />}
+          {message ? <NoBooking /> : <BookingOverviewList allTours={tours} />}
         </div>
       </main>
     </>

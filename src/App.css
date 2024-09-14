@@ -1389,7 +1389,13 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 7rem;
 }
-
+.card-container-2 {
+  max-width: 120rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 7rem;
+}
 .card {
   border-radius: 3px;
   overflow: hidden;
@@ -1635,4 +1641,34 @@ body {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
   -webkit-transform: translateY(-2px);
   transform: translateY(-2px);
+}
+.no-bookings-container {
+  text-align: center;
+  /* background-color: #f9f9f9; */
+}
+
+.no-bookings-title {
+  font-size: 4rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.no-bookings-text {
+  font-size: 2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.no-bookings-link {
+  font-size: 2rem;
+  color: #fff;
+  background-color: #007bff;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.no-bookings-link:hover {
+  background-color: #0056b3;
 }
